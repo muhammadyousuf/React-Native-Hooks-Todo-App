@@ -10,8 +10,6 @@ import {
 import {Text, View, Icon} from 'native-base';
 const SideMenu = props => {
   const {navigate} = props.navigation;
-  console.log('navigate', navigate);
-
   return (
     <SafeAreaView style={styles.container}>
       <View>
@@ -49,7 +47,9 @@ const SideMenu = props => {
           />
           <Text style={styles.ItemText}>COMPLETED</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.SingleRow}>
+        <TouchableOpacity
+          style={styles.SingleRow}
+          onPress={() => navigate('Profile')}>
           <Icon style={styles.SideMenuIcon} type="Entypo" name="user" />
           <Text style={styles.ItemText}>PROFILE</Text>
         </TouchableOpacity>

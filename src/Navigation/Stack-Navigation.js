@@ -7,6 +7,7 @@ import SideMenu from '../Components/Side-Menu';
 import HeaderComponent from '../Components/Header-Component';
 import InCompleteList from '../Screens/In-Complete-List';
 import CompleteList from '../Screens/Complete-List';
+import UserProfile from '../Screens/User-Profile';
 const AppNavigator = createStackNavigator(
   {
     Home: {
@@ -17,6 +18,9 @@ const AppNavigator = createStackNavigator(
     },
     Completed: {
       screen: CompleteList,
+    },
+    Profile: {
+      screen: UserProfile,
     },
   },
   {
