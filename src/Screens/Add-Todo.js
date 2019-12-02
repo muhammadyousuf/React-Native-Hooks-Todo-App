@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     width: '80%',
     marginTop: '20%',
     marginLeft: '12%',
-    backgroundColor: 'red',
+    backgroundColor: '#B40300',
   },
   btnText: {
     marginLeft: '30%',

@@ -5,7 +5,7 @@ import {StyleSheet} from 'react-native';
 const HeaderComponent = props => {
   const {navigation} = props;
   return (
-    <Header style={styles.headerColor} androidStatusBarColor="red">
+    <Header style={styles.headerColor} androidStatusBarColor="#690100">
       <Left style={styles.headerAlign}>
         <Icon
           onPress={() => navigation.toggleDrawer()}
@@ -35,5 +35,5 @@ const styles = StyleSheet.create({
     flex: 3,
     justifyContent: 'center',
   },
-  headerColor: {backgroundColor: 'red'},
+  headerColor: {backgroundColor: '#B40300'},
 });
