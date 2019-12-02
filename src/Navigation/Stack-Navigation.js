@@ -5,9 +5,13 @@ import {createDrawerNavigator} from 'react-navigation-drawer';
 import AddTodo from '../Screens/Add-Todo';
 import SideMenu from '../Components/Side-Menu';
 import HeaderComponent from '../Components/Header-Component';
+import InCompleteList from '../Screens/In-Complete-List';
 
 const AppNavigator = createStackNavigator(
   {
+    Home: {
+      screen: InCompleteList,
+    },
     AddTodo: {
       screen: AddTodo,
     },

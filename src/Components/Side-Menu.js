@@ -5,6 +5,7 @@ import {
   SafeAreaView,
   Platform,
   TouchableOpacity,
+  Image,
 } from 'react-native';
 import {Text, View, Icon} from 'native-base';
 const SideMenu = props => {
@@ -13,6 +14,18 @@ const SideMenu = props => {
   return (
     <SafeAreaView style={styles.container}>
       <View>
+        <View style={styles.MenuProfile}>
+          <TouchableOpacity style={styles.Profile}>
+            <Image
+              source={{
+                uri:
+                  'https://raw.githubusercontent.com/AboutReact/sampleresource/master/old_logo.png',
+              }}
+              style={styles.ProfileImage}
+            />
+            <Text style={styles.UserName}>Muhammad Yousuf</Text>
+          </TouchableOpacity>
+        </View>
         <TouchableOpacity style={styles.SingleRow}>
           <Icon style={styles.SideMenuIcon} type="Feather" name="list" />
           <Text style={styles.ItemText}>TODO LIST</Text>
@@ -68,5 +81,22 @@ const styles = StyleSheet.create({
     marginTop: '2%',
     fontFamily: 'times',
     color: 'black',
+  },
+  MenuProfile: {
+    height: 200,
+    backgroundColor: '#B40300',
+    marginTop: -StatusBar.currentHeight,
+  },
+  ProfileImage: {width: 120, height: 120, borderRadius: 120 / 2},
+  Profile: {
+    textAlign: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: '5%',
+  },
+  UserName: {
+    marginTop: '5%',
+    color: '#fff',
+    fontFamily: 'times',
   },
 });
