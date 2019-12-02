@@ -6,17 +6,15 @@ import {
   SafeAreaView,
   Platform,
 } from 'react-native';
-class SideMenu extends React.Component {
-  render() {
-    const {navigate} = this.props.navigation;
+const SideMenu = props => {
+  //const {navigate} = props.navigation;
 
-    return (
-      <SafeAreaView style={styles.container}>
-        <Text>HOME</Text>
-      </SafeAreaView>
-    );
-  }
-}
+  return (
+    <SafeAreaView style={styles.container}>
+      <Text>HOME</Text>
+    </SafeAreaView>
+  );
+};
 
 export default SideMenu;
 
