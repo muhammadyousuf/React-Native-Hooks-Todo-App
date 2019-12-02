@@ -9,8 +9,10 @@ import {
   Right,
   Icon,
   Badge,
+  Item,
+  Input,
 } from 'native-base';
-import {StyleSheet, ScrollView} from 'react-native';
+import {StyleSheet, ScrollView, View} from 'react-native';
 
 function InCompleteList() {
   const [todoList] = useState([
@@ -21,6 +23,13 @@ function InCompleteList() {
     <Container>
       <Content>
         <ScrollView>
+          <View style={styles.SearchStyle}>
+            <Item>
+              <Icon style={styles.IconStyle} name="ios-search" />
+              <Input placeholder="Search" />
+              <Icon style={styles.IconStyle} name="close" type="AntDesign" />
+            </Item>
+          </View>
           {todoList.map((data, index) => {
             return (
               <List style={styles.listStlye} key={index}>
@@ -71,7 +80,8 @@ const styles = StyleSheet.create({
   IconStyle: {
     marginLeft: '10%',
     color: '#B40300',
-    fontSize: 30,
+    fontSize: 25,
+    fontWeight: 'bold',
   },
   dateTimeStyle: {
     fontSize: 12,
@@ -84,13 +94,21 @@ const styles = StyleSheet.create({
   listStlye: {
     borderBottomColor: 'red',
     borderBottomWidth: 2,
-    borderTopColor: 'red',
-    borderTopWidth: 2,
     backgroundColor: '#EDE3E3',
-    marginTop: '5%',
   },
   todoTextStyle: {
     textTransform: 'capitalize',
     fontFamily: 'times',
+  },
+  SearchStyle: {
+    width: '90%',
+    marginLeft: '5%',
+    marginTop: '5%',
+    marginBottom: '5%',
+    borderWidth: 2,
+    height: 50,
+    borderColor: '#B40300',
+    borderRadius: 5,
+    backgroundColor: '#fff',
   },
 });
