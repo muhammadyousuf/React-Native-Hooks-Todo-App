@@ -6,7 +6,7 @@ import AddTodo from '../Screens/Add-Todo';
 import SideMenu from '../Components/Side-Menu';
 import HeaderComponent from '../Components/Header-Component';
 import InCompleteList from '../Screens/In-Complete-List';
-
+import CompleteList from '../Screens/Complete-List';
 const AppNavigator = createStackNavigator(
   {
     Home: {
@@ -14,6 +14,9 @@ const AppNavigator = createStackNavigator(
     },
     AddTodo: {
       screen: AddTodo,
+    },
+    Completed: {
+      screen: CompleteList,
     },
   },
   {

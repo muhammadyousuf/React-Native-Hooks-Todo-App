@@ -14,7 +14,7 @@ import {
 } from 'native-base';
 import {StyleSheet, ScrollView, View} from 'react-native';
 
-function InCompleteList() {
+function CompleteList() {
   const [todoList] = useState([
     {title: 'first todo', order: 3, completed: false},
     {title: 'second todo', order: 12, completed: false},
@@ -32,7 +32,7 @@ function InCompleteList() {
             </Item>
           </View>
           {todoList.map((data, index) => {
-            return !data.completed ? (
+            return data.completed ? (
               <List style={styles.listStlye} key={index}>
                 <ListItem noBorder>
                   <Left>
@@ -55,11 +55,6 @@ function InCompleteList() {
                       name="delete"
                       type="AntDesign"
                     />
-                    <Icon
-                      style={styles.IconStyle}
-                      name="done"
-                      type="MaterialIcons"
-                    />
                   </Right>
                 </ListItem>
               </List>
@@ -71,7 +66,7 @@ function InCompleteList() {
   );
 }
 
-export default InCompleteList;
+export default CompleteList;
 
 const styles = StyleSheet.create({
   SingleRowIcon: {

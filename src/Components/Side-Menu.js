@@ -9,7 +9,8 @@ import {
 } from 'react-native';
 import {Text, View, Icon} from 'native-base';
 const SideMenu = props => {
-  //const {navigate} = props.navigation;
+  const {navigate} = props.navigation;
+  console.log('navigate', navigate);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -26,15 +27,21 @@ const SideMenu = props => {
             <Text style={styles.UserName}>Muhammad Yousuf</Text>
           </TouchableOpacity>
         </View>
-        <TouchableOpacity style={styles.SingleRow}>
+        <TouchableOpacity
+          style={styles.SingleRow}
+          onPress={() => navigate('Home')}>
           <Icon style={styles.SideMenuIcon} type="Feather" name="list" />
           <Text style={styles.ItemText}>TODO LIST</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.SingleRow}>
+        <TouchableOpacity
+          style={styles.SingleRow}
+          onPress={() => navigate('AddTodo')}>
           <Icon style={styles.SideMenuIcon} type="Entypo" name="add-to-list" />
           <Text style={styles.ItemText}>ADD TODO</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.SingleRow}>
+        <TouchableOpacity
+          style={styles.SingleRow}
+          onPress={() => navigate('Completed')}>
           <Icon
             style={styles.SideMenuIcon}
             type="MaterialIcons"
