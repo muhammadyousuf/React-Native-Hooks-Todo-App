@@ -13,6 +13,7 @@
     "native-base": "^2.13.8",
     "react": "16.9.0",
     "react-native": "0.61.4",
+    "react-native-facebook-account-kit": "^2.1.0",
     "react-native-gesture-handler": "^1.5.2",
     "react-native-image-picker": "^1.1.0",
     "react-native-reanimated": "^1.4.0",

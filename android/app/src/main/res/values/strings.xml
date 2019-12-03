@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">TodoAppWithHooks</string>
+   <string name="fb_app_id">379341552672672</string>
+    <string name="ak_client_token">6fb9e75c1558bbca6280b1a4cb1f333e</string>
 </resources>
