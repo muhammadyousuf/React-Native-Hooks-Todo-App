@@ -33,6 +33,7 @@ const styles = StyleSheet.create({
     width: '80%',
     marginTop: '20%',
     marginLeft: '10%',
+    marginBottom: '5%',
   },
   inputBox: {
     marginTop: '15%',
@@ -45,12 +46,18 @@ const styles = StyleSheet.create({
     fontSize: 13,
   },
   BtnStyle: {
-    width: '80%',
-    marginTop: '20%',
-    marginLeft: '12%',
+    width: '60%',
+    marginTop: '18%',
+    marginLeft: '20%',
     backgroundColor: '#B40300',
   },
   btnText: {
-    marginLeft: '30%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    marginTop: -10,
+    color: '#fff',
+    fontFamily: 'times',
   },
 });

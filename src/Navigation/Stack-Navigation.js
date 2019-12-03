@@ -10,6 +10,9 @@ import CompleteList from '../Screens/Complete-List';
 import UserProfile from '../Screens/User-Profile';
 const AppNavigator = createStackNavigator(
   {
+    Profile: {
+      screen: UserProfile,
+    },
     Home: {
       screen: InCompleteList,
     },
@@ -18,9 +21,6 @@ const AppNavigator = createStackNavigator(
     },
     Completed: {
       screen: CompleteList,
-    },
-    Profile: {
-      screen: UserProfile,
     },
   },
   {
