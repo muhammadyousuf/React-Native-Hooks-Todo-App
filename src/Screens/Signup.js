@@ -1,33 +1,58 @@
-import React from 'react';
-import {Container, Content, Form, Item, Input, Text, Button} from 'native-base';
+import React, {useState} from 'react';
+import {
+  Container,
+  Content,
+  Form,
+  Item,
+  Input,
+  Text,
+  Button,
+  Icon,
+  View,
+} from 'native-base';
 import {StyleSheet, ScrollView} from 'react-native';
 
 const Signup = () => {
+  const [passSecure, setpassSecure] = useState(true);
   return (
     <Container>
       <Content>
         <ScrollView>
           <Form style={styles.formStyle}>
-            <Item>
-              <Input style={styles.inputBox} placeholder="Name" />
-            </Item>
-            <Item>
-              <Input style={styles.inputBox} placeholder="Email" />
-            </Item>
-            <Item>
-              <Input
-                keyboardType="numeric"
-                style={styles.inputBox}
-                placeholder="Contact"
-              />
-            </Item>
-            <Item>
-              <Input
-                style={styles.inputBox}
-                placeholder="Password"
-                secureTextEntry={true}
-              />
-            </Item>
+            <View style={styles.inputBox}>
+              <Item>
+                <Input placeholder="Name" />
+                <Icon name="user" type="AntDesign" style={styles.IconStyle} />
+              </Item>
+            </View>
+            <View style={styles.inputBox}>
+              <Item>
+                <Input placeholder="Email" />
+                <Icon
+                  name="email"
+                  type="MaterialIcons"
+                  style={styles.IconStyle}
+                />
+              </Item>
+            </View>
+            <View style={styles.inputBox}>
+              <Item>
+                <Input keyboardType="numeric" placeholder="Contact" />
+                <Icon name="phone" type="Feather" style={styles.IconStyle} />
+              </Item>
+            </View>
+            <View style={styles.inputBox}>
+              <Item>
+                <Input placeholder="Password" secureTextEntry={passSecure} />
+                <Icon
+                  name="eye"
+                  type="Feather"
+                  onPress={() => setpassSecure(!passSecure)}
+                  style={styles.IconStyle}
+                />
+              </Item>
+            </View>
+
             <Button style={styles.BtnStyle}>
               <Text style={styles.btnText}> SIGN UP </Text>
             </Button>
@@ -43,7 +68,7 @@ export default Signup;
 const styles = StyleSheet.create({
   formStyle: {
     width: '80%',
-    marginTop: '10%',
+    marginTop: '6%',
     marginLeft: '10%',
     marginBottom: '5%',
   },
@@ -52,7 +77,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: '#000',
     backgroundColor: '#fff',
-    padding: 10,
+    padding: 2,
     paddingLeft: 10,
     fontFamily: 'MavenPro-Regular',
     fontSize: 13,
@@ -68,8 +93,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginLeft: 'auto',
     marginRight: 'auto',
-    marginTop: 20,
+    marginTop: 30,
     color: '#fff',
     fontFamily: 'times',
+  },
+  IconStyle: {
+    fontSize: 30,
+    color: '#B40300',
   },
 });
