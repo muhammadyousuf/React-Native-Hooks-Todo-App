@@ -8,11 +8,9 @@ import HeaderComponent from '../Components/Header-Component';
 import InCompleteList from '../Screens/In-Complete-List';
 import CompleteList from '../Screens/Complete-List';
 import UserProfile from '../Screens/User-Profile';
+import Signup from '../Screens/Signup';
 const AppNavigator = createStackNavigator(
   {
-    Profile: {
-      screen: UserProfile,
-    },
     Home: {
       screen: InCompleteList,
     },
@@ -21,6 +19,9 @@ const AppNavigator = createStackNavigator(
     },
     Completed: {
       screen: CompleteList,
+    },
+    Profile: {
+      screen: UserProfile,
     },
   },
   {
@@ -32,6 +33,9 @@ const AppNavigator = createStackNavigator(
 
 export default createAppContainer(
   createStackNavigator({
+    Signup: {
+      screen: Signup,
+    },
     DrawerAbleApp: {
       screen: createDrawerNavigator(
         {
