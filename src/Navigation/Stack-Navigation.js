@@ -9,6 +9,7 @@ import InCompleteList from '../Screens/In-Complete-List';
 import CompleteList from '../Screens/Complete-List';
 import UserProfile from '../Screens/User-Profile';
 import Signup from '../Screens/Signup';
+import Login from '../Screens/Login';
 const AppNavigator = createStackNavigator(
   {
     Home: {
@@ -33,6 +34,9 @@ const AppNavigator = createStackNavigator(
 
 export default createAppContainer(
   createStackNavigator({
+    Login: {
+      screen: Login,
+    },
     Signup: {
       screen: Signup,
     },
