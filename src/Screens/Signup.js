@@ -73,11 +73,12 @@ const styles = StyleSheet.create({
     marginBottom: '5%',
   },
   inputBox: {
-    marginTop: '15%',
+    marginTop: '12%',
     borderWidth: 2,
     borderColor: '#000',
     backgroundColor: '#fff',
     padding: 2,
+    borderTopColor: 'green',
     paddingLeft: 10,
     fontFamily: 'MavenPro-Regular',
     fontSize: 13,
