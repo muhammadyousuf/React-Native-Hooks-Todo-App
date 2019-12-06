@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   Container,
   Content,
@@ -13,13 +13,28 @@ import {
   Input,
 } from 'native-base';
 import {StyleSheet, ScrollView, View} from 'react-native';
+import fetchRecords from '../Networks/Fetch-Records';
 
 function InCompleteList() {
-  const [todoList] = useState([
-    {title: 'first todo', order: 3, completed: false},
-    {title: 'second todo', order: 12, completed: false},
-    {title: 'third todo', order: 1, completed: true},
-  ]);
+  const [todoList, setTodoList] = useState([]);
+  const [text, setText] = useState('');
+  useEffect(() => {
+    fetchRecords().then(res => {
+      console.log(res);
+      const newData = res.filter(function(item) {
+        //applying filter for the inserted text in search bar
+        const itemData = item.title
+          ? item.title.toUpperCase()
+          : ''.toUpperCase();
+        const textData = text.toUpperCase();
+        return itemData.indexOf(textData) > -1;
+      });
+      setTodoList(newData);
+    });
+  });
+  function SearchFilterFunction(searchValue) {
+    setText(searchValue);
+  }
   return (
     <Container>
       <Content>
@@ -27,8 +42,17 @@ function InCompleteList() {
           <View style={styles.SearchStyle}>
             <Item>
               <Icon style={styles.IconStyle} name="ios-search" />
-              <Input placeholder="Search" />
-              <Icon style={styles.IconStyle} name="close" type="AntDesign" />
+              <Input
+                placeholder="Search"
+                value={text}
+                onChangeText={textValue => SearchFilterFunction(textValue)}
+              />
+              <Icon
+                style={styles.IconStyle}
+                name="close"
+                type="AntDesign"
+                onPress={() => setText('')}
+              />
             </Item>
           </View>
           {todoList.map((data, index) => {
