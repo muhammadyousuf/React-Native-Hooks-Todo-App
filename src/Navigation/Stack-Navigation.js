@@ -9,6 +9,7 @@ import InCompleteList from '../Screens/In-Complete-List';
 import CompleteList from '../Screens/Complete-List';
 import UserProfile from '../Screens/User-Profile';
 import TabsMenu from '../Components/Tabs-Menu';
+import Splash from '../Screens/Splash';
 
 const AppNavigator = createStackNavigator(
   {
@@ -34,6 +35,12 @@ const AppNavigator = createStackNavigator(
 
 export default createAppContainer(
   createStackNavigator({
+    Splash: {
+      screen: Splash,
+      navigationOptions: {
+        header: null,
+      },
+    },
     TabsMenu: {
       screen: TabsMenu,
       navigationOptions: {
