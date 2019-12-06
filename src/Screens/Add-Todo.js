@@ -1,34 +1,10 @@
 import React from 'react';
-import {
-  Container,
-  Header,
-  Content,
-  Form,
-  Item,
-  Input,
-  Left,
-  Right,
-  Body,
-  Text,
-  Icon,
-  Button,
-} from 'native-base';
+import {Container, Content, Form, Item, Input, Text, Button} from 'native-base';
 import {StyleSheet} from 'react-native';
 
 const AddTodo = () => {
   return (
     <Container>
-      <Header style={styles.headerColor} androidStatusBarColor="red">
-        <Left style={styles.headerAlign}>
-          <Icon name="menu" type="Entypo" style={styles.IconTextColor} />
-        </Left>
-        <Body style={styles.headerAlign}>
-          <Text style={styles.IconTextColor}>TODO</Text>
-        </Body>
-        <Right>
-          <Icon name="close" type="FontAwesome" style={styles.IconTextColor} />
-        </Right>
-      </Header>
       <Content>
         <Form style={styles.formStyle}>
           <Item>
@@ -53,18 +29,11 @@ const AddTodo = () => {
 export default AddTodo;
 
 const styles = StyleSheet.create({
-  IconTextColor: {
-    color: '#fff',
-    fontFamily: 'times',
-  },
-  headerAlign: {
-    flex: 3,
-    justifyContent: 'center',
-  },
   formStyle: {
     width: '80%',
     marginTop: '20%',
     marginLeft: '10%',
+    marginBottom: '5%',
   },
   inputBox: {
     marginTop: '15%',
@@ -77,13 +46,18 @@ const styles = StyleSheet.create({
     fontSize: 13,
   },
   BtnStyle: {
-    width: '80%',
-    marginTop: '20%',
-    marginLeft: '12%',
-    backgroundColor: 'red',
+    width: '60%',
+    marginTop: '18%',
+    marginLeft: '20%',
+    backgroundColor: '#B40300',
   },
   btnText: {
-    marginLeft: '30%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    marginTop: -10,
+    color: '#fff',
+    fontFamily: 'times',
   },
-  headerColor: {backgroundColor: 'red'},
 });
