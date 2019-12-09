@@ -14,26 +14,50 @@ import {
 } from 'native-base';
 import {StyleSheet, ScrollView, View} from 'react-native';
 import fetchRecords from '../Networks/Fetch-Records';
+import deleteRecord from '../Networks/Delete-Record';
+import editRecords from '../Networks/Edit-Record';
 
 function InCompleteList() {
   const [todoList, setTodoList] = useState([]);
   const [text, setText] = useState('');
   useEffect(() => {
     fetchRecords().then(res => {
-      console.log(res);
+      setTodoList(res);
+    });
+  }, []);
+  function ClearText(textClear) {
+    SearchFilterFunction(textClear);
+  }
+  function SearchFilterFunction(searchValue) {
+    setText(searchValue);
+    fetchRecords().then(res => {
       const newData = res.filter(function(item) {
-        //applying filter for the inserted text in search bar
+        //   //applying filter for the inserted text in search bar
         const itemData = item.title
           ? item.title.toUpperCase()
           : ''.toUpperCase();
-        const textData = text.toUpperCase();
-        return itemData.indexOf(textData) > -1;
+        // const textData = text.toUpperCase();
+        return itemData.indexOf(searchValue.toUpperCase()) > -1;
       });
       setTodoList(newData);
     });
-  });
-  function SearchFilterFunction(searchValue) {
-    setText(searchValue);
+  }
+  function deleteTodo(id) {
+    deleteRecord(id).then(() => {
+      fetchRecords().then(res => {
+        setTodoList(res);
+      });
+    });
+  }
+  function editTodo(id) {
+    let data = {completed: true};
+    console.log('data', data, id);
+    editRecords(data, id).then(result => {
+      console.log('result', result);
+      fetchRecords().then(res => {
+        setTodoList(res);
+      });
+    });
   }
   return (
     <Container>
@@ -51,7 +75,7 @@ function InCompleteList() {
                 style={styles.IconStyle}
                 name="close"
                 type="AntDesign"
-                onPress={() => setText('')}
+                onPress={() => ClearText('')}
               />
             </Item>
           </View>
@@ -78,11 +102,13 @@ function InCompleteList() {
                       style={styles.IconStyle}
                       name="delete"
                       type="AntDesign"
+                      onPress={() => deleteTodo(data.id)}
                     />
                     <Icon
                       style={styles.IconStyle}
                       name="done"
                       type="MaterialIcons"
+                      onPress={() => editTodo(data.id)}
                     />
                   </Right>
                 </ListItem>
