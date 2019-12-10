@@ -1,23 +1,47 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Container, Content, Form, Item, Input, Text, Button} from 'native-base';
-import {StyleSheet} from 'react-native';
-
+import {StyleSheet, ToastAndroid} from 'react-native';
+import AddRecord from '../Networks/Add-Record';
 const AddTodo = () => {
+  const [title, setTitle] = useState('');
+  const [order, setOrder] = useState(1);
+  function handleSubmit() {
+    if (!title) {
+      return ToastAndroid.show('Please selet title!', ToastAndroid.SHORT);
+    }
+    let data = {};
+    data.title = title;
+    data.order = order;
+    data.completed = false;
+    AddRecord(data).then(result => {
+      console.log('result', result);
+      ToastAndroid.show('Task Add SuccessFully!', ToastAndroid.SHORT);
+      setTitle('');
+      setOrder(1);
+    });
+  }
   return (
     <Container>
       <Content>
         <Form style={styles.formStyle}>
           <Item>
-            <Input style={styles.inputBox} placeholder="Title" />
+            <Input
+              style={styles.inputBox}
+              value={title}
+              placeholder="Title"
+              onChangeText={e => setTitle(e)}
+            />
           </Item>
           <Item>
             <Input
               keyboardType="numeric"
               style={styles.inputBox}
+              value={order}
+              onChangeText={e => setOrder(e)}
               placeholder="Order"
             />
           </Item>
-          <Button style={styles.BtnStyle}>
+          <Button style={styles.BtnStyle} onPress={handleSubmit}>
             <Text style={styles.btnText}> ADD TODO </Text>
           </Button>
         </Form>
