@@ -1,6 +1,6 @@
 import React from 'react';
 import {Header, Left, Right, Body, Text, Icon} from 'native-base';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, BackHandler} from 'react-native';
 
 const HeaderComponent = props => {
   const {navigation} = props;
@@ -18,7 +18,12 @@ const HeaderComponent = props => {
         <Text style={styles.IconTextColor}>TODO</Text>
       </Body>
       <Right>
-        <Icon name="close" type="FontAwesome" style={styles.IconTextColor} />
+        <Icon
+          name="close"
+          type="FontAwesome"
+          style={styles.IconTextColor}
+          onPress={() => BackHandler.exitApp()}
+        />
       </Right>
     </Header>
   );

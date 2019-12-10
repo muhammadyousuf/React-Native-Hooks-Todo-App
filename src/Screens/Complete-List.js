@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   Container,
   Content,
@@ -11,15 +11,56 @@ import {
   Badge,
   Item,
   Input,
+  Button,
 } from 'native-base';
 import {StyleSheet, ScrollView, View} from 'react-native';
+import fetchRecords from '../Networks/Fetch-Records';
+import deleteRecord from '../Networks/Delete-Record';
+import Modal from 'react-native-modal';
 
 function CompleteList() {
-  const [todoList] = useState([
-    {title: 'first todo', order: 3, completed: false},
-    {title: 'second todo', order: 12, completed: false},
-    {title: 'third todo', order: 1, completed: true},
-  ]);
+  const [todoList, setTodoList] = useState([]);
+  const [text, setText] = useState('');
+  const [isVisible, setIsVisible] = useState(false);
+  const [id, setId] = useState(null);
+
+  useEffect(() => {
+    fetchRecords().then(res => {
+      setTodoList(res);
+    });
+  }, []);
+  function ClearText(textClear) {
+    SearchFilterFunction(textClear);
+  }
+  function SearchFilterFunction(searchValue) {
+    setText(searchValue);
+    fetchRecords().then(res => {
+      const newData = res.filter(function(item) {
+        const itemData = item.title
+          ? item.title.toUpperCase()
+          : ''.toUpperCase();
+        return itemData.indexOf(searchValue.toUpperCase()) > -1;
+      });
+      setTodoList(newData);
+    });
+  }
+  function deleteTodo() {
+    deleteRecord(id).then(() => {
+      fetchRecords().then(res => {
+        setTodoList(res);
+        setIsVisible(false);
+        setId('');
+      });
+    });
+  }
+  function deleteModal(todoId) {
+    setIsVisible(true);
+    setId(todoId);
+  }
+  function clearBtn() {
+    setIsVisible(false);
+    setId('');
+  }
   return (
     <Container>
       <Content>
@@ -27,10 +68,42 @@ function CompleteList() {
           <View style={styles.SearchStyle}>
             <Item>
               <Icon style={styles.IconStyle} name="ios-search" />
-              <Input placeholder="Search" />
-              <Icon style={styles.IconStyle} name="close" type="AntDesign" />
+              <Input
+                value={text}
+                placeholder="Search"
+                onChangeText={textValue => SearchFilterFunction(textValue)}
+              />
+              <Icon
+                style={styles.IconStyle}
+                name="close"
+                type="AntDesign"
+                onPress={() => ClearText('')}
+              />
             </Item>
           </View>
+          <Modal
+            isVisible={isVisible}
+            animationOutTiming={0}
+            animationOut="fadeIn">
+            <View style={styles.ModalStyle}>
+              <Text style={styles.ModelHeading}>DELETE TODO</Text>
+              <View style={styles.ModelViewer}>
+                <Text style={styles.mesgHeading}>
+                  Are you sure you want to delete task?
+                </Text>
+                <View style={styles.buttonALign}>
+                  <Button
+                    style={styles.yesBtnStyle}
+                    onPress={() => deleteTodo()}>
+                    <Text> Yes</Text>
+                  </Button>
+                  <Button style={styles.noBtnStyle} onPress={() => clearBtn()}>
+                    <Text style={styles.nobtnText}> No</Text>
+                  </Button>
+                </View>
+              </View>
+            </View>
+          </Modal>
           {todoList.map((data, index) => {
             return data.completed ? (
               <List style={styles.listStlye} key={index}>
@@ -54,6 +127,7 @@ function CompleteList() {
                       style={styles.IconStyle}
                       name="delete"
                       type="AntDesign"
+                      onPress={() => deleteModal(data.id)}
                     />
                   </Right>
                 </ListItem>
@@ -107,4 +181,36 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     backgroundColor: '#fff',
   },
+  ModalStyle: {
+    backgroundColor: '#fff',
+    height: 160,
+  },
+  ModelHeading: {
+    fontFamily: 'times',
+    marginLeft: 20,
+    fontWeight: 'bold',
+    marginTop: 20,
+    marginBottom: 0,
+  },
+  ModelViewer: {
+    borderTopColor: '#B40300',
+    borderTopWidth: 5,
+    marginTop: 5,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  buttonALign: {flexDirection: 'row', paddingTop: 20},
+  mesgHeading: {fontFamily: 'times', fontSize: 14, marginTop: 10},
+  noBtnStyle: {
+    marginLeft: 30,
+    height: 35,
+    borderRadius: 5,
+    backgroundColor: 'lightgray',
+  },
+  yesBtnStyle: {
+    backgroundColor: '#B40300',
+    height: 35,
+    borderRadius: 5,
+  },
+  nobtnText: {color: 'black'},
 });

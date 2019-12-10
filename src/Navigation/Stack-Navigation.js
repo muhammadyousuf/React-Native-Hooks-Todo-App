@@ -19,6 +19,7 @@ const AppNavigator = createStackNavigator(
     AddTodo: {
       screen: AddTodo,
     },
+
     Completed: {
       screen: CompleteList,
     },
