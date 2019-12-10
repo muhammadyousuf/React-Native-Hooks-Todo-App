@@ -60,7 +60,9 @@ const SideMenu = props => {
             <Icon style={styles.SideMenuIcon} type="Entypo" name="user" />
             <Text style={styles.ItemText}>PROFILE</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.SingleRow}>
+          <TouchableOpacity
+            style={styles.SingleRow}
+            onPress={() => navigate('TabsMenu')}>
             <Icon style={styles.SideMenuIcon} type="Entypo" name="log-out" />
             <Text style={styles.ItemText}>LOGOUT</Text>
           </TouchableOpacity>
